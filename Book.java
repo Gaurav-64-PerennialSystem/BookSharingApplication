@@ -10,19 +10,19 @@ public class Book {
     private String keywords;
     private BookStatus bookStatus;
     private int rating=0;
-    private Owner owner;
+    private User users;
        public Book(){
 
        }
 
-    public Book(int isbn, Set<String> authorNames, String bookName, String keywords,int rating, Owner owner) {
+    public Book(int isbn, Set<String> authorNames, String bookName, String keywords,int rating, User users) {
         this.isbn = isbn;
         this.authorNames = authorNames;
         this.bookName = bookName;
         this.keywords = keywords;
         this.bookStatus =BookStatus.AVAILABLE;
         this.rating = rating;
-        this.owner = owner;
+        this.users = users;
     }
     public int getIsbn() {
         return isbn;
@@ -45,11 +45,21 @@ public class Book {
     public void setRating(int rating) {
         this.rating = rating;
     }
-    public Owner getOwner() {
-        return owner;
+    public User getUsers() {
+        return users;
     }
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public BookStatus getBookStatus() {
+        return bookStatus;
+    }
+    public void borrowStatus(){
+           this.bookStatus=BookStatus.DISCONTINUE;
+    }
+    public void returnStatus(){
+           this.bookStatus=BookStatus.AVAILABLE;
     }
 
     @Override
@@ -61,7 +71,7 @@ public class Book {
                 ", keywords='" + keywords + '\'' +
                 ", bookStatus='" + bookStatus + '\'' +
                 ", rating='" + rating + '\'' +
-                ", owner=" + owner +
+                ", users=" + users +
                 '}';
     }
 }
